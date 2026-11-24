@@ -1,7 +1,7 @@
 ﻿# ==============================================================================
-# antigravity-agent-workflow - Proje Başlatma Betiği (PowerShell)
-# Geliştirici: Kaaner4x
-# Lisans: MIT
+# antigravity-agent-workflow - Setup Script (PowerShell)
+# Developer: Kaaner4x
+# License: MIT
 # ==============================================================================
 
 Write-Host ">>> Antigravity Agent Workflow Kurulumu Başlatılıyor..." -ForegroundColor Cyan
@@ -13,7 +13,7 @@ $folders = @(
     ".agents/skills",
     ".agents/scratch",
     "docs",
-    "docs/is-akislari",
+    "docs/workflows",
     "scripts"
 )
 
@@ -26,11 +26,11 @@ foreach ($folder in $folders) {
     }
 }
 
-# Örnek Ajan Kural Dosyası Oluştur
-$ruleFile = ".agents/rules/genel-kurallar.md"
+# Varsayılan Kural Dosyası Kontrolü
+$ruleFile = ".agents/rules/general-rules.md"
 if (-not (Test-Path -Path $ruleFile)) {
     $ruleContent = @"
-# Proje Ajan Kuralları (Antigravity Rules)
+# Genel Kurallar (Antigravity Rules)
 
 Bu kurallar Antigravity ajanının bu depoda çalışırken izlemesi gereken standartları belirler:
 
@@ -40,7 +40,7 @@ Bu kurallar Antigravity ajanının bu depoda çalışırken izlemesi gereken sta
 4. **Onay Mekanizması**: Kritik değişiklikler öncesinde `/plan` veya `/grill-me` gibi süreçler işletilmelidir.
 "@
     Set-Content -Path $ruleFile -Value $ruleContent -Encoding UTF8
-    Write-Host " [+] Örnek kural dosyası oluşturuldu: $ruleFile" -ForegroundColor Green
+    Write-Host " [+] Varsayılan kural dosyası oluşturuldu: $ruleFile" -ForegroundColor Green
 }
 
 Write-Host "`n>>> Kurulum başarıyla tamamlandı!" -ForegroundColor Green
