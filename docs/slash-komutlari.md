@@ -1,104 +1,121 @@
-# Antigravity Slash Komutları Kılavuzu
+# Antigravity Eksiksiz Slash Komutları Kılavuzu
 
-Bu belge, Antigravity sohbet panelinde `/` önekiyle çağrılabilen tüm özel iş akışlarının ayrıntılı Türkçe açıklamalarını ve kullanım örneklerini içerir.
-
----
-
-## 1. `/grill-me` (Etkileşimli Gereksinim Analizi)
-
-### Ne İşe Yarar?
-Ajanın hemen kod yazmaya başlamasını durdurur; bunun yerine bir baş mimar veya ürün yöneticisi gibi davranarak sizi detaylı sorularla sorgular.
-
-### Ne Zaman Tercih Edilmelidir?
-- Bir özelliğin mimarisini tasarlarken,
-- Güvenlik, performans ve uç durumlar hakkında henüz kesin karar vermediğinizde,
-- Ajanın yanlış varsayımlarla yüzlerce satır hatalı kod üretmesini önlemek istediğinizde.
-
-### Örnek Senaryo
-```text
-Kullanıcı: /grill-me Kullanıcıların Google ve GitHub ile oturum açabileceği bir OAuth servisi yazmak istiyorum.
-Ajan:
-1. Kullanıcı daha önce Google ile kayıt olduysa ve sonra aynı e-posta ile GitHub ile girerse hesaplar birleştirilmeli mi?
-2. Refresh token mekanizması veritabanında mı tutulacak yoksa Redis üzerinde mi?
-3. Hangi JWT kütüphanesini ve imzalama algoritmasını (RS256 vs HS256) tercih ediyorsunuz?
-```
+Bu belge, Antigravity ekosisteminde (Antigravity IDE, CLI `agy`, Antigravity 2.0 Desktop) kullanılabilen **tüm slash komutlarını** kategorilerine göre ayrıntılı biçimde açıklar.
 
 ---
 
-## 2. `/goal` (Hedef Odaklı Kesintisiz Yürütme)
+## 1. İleri Düzey Ajan & İş Akışı Komutları
 
-### Ne İşe Yarar?
-Ajanın küçük bir adımda durup onay sorması yerine, belirlenen nihai hedefe ulaşana kadar bağımsız şekilde döngü halinde çalışmasını sağlar.
+### 🎯 `/grill-me` (Etkileşimli Tasarım ve Mülakat)
+- **Amaç:** Ajanın hemen aceleyle kod yazmasını engeller. Bir ürün yöneticisi ve yazılım mimarı gibi sizi mülakata alarak eksik gereksinimleri, tasarım tercihlerini ve uç durumları açığa çıkarır.
+- **Ne Zaman:** Yeni bir mimari kurgularken, API sözleşmelerini belirlerken veya veritabanı şeması tasarlarken.
+- **Örnek:**
+  ```text
+  /grill-me Redis ve WebSockets kullanarak gerçek zamanlı bir bildirim servisi kurmak istiyorum.
+  ```
 
-### Ne Zaman Tercih Edilmelidir?
-- Gece boyunca veya siz bilgisayar başında değilken çalışacak uzun soluklu işlerde,
-- Kapsamlı kod geçişlerinde (migration),
-- Tüm test suite'inin yeşile dönene kadar otomatik onarılmasında.
+### 📋 `/plan` (Aşamalı Stratejik Planlama)
+- **Amaç:** Görevi bağımsız, sıralı ve doğrulanabilir aşamalara böler. Her aşama tamamlandıkça onay kutusu işaretlenir.
+- **Ne Zaman:** Çok adımlı hata ayıklama, refactoring ve kütüphane geçişlerinde.
+- **Örnek:**
+  ```text
+  /plan Projedeki React 17 bileşenlerini React 18 Concurrent özelliklerine yükseltmek için aşamalı plan hazırla.
+  ```
 
-### Örnek Senaryo
-```text
-/goal src/ klasöründeki tüm JavaScript dosyalarını TypeScript'e çevir, tipleri eksiksiz tanımla ve 'npm test' hatasız tamamlanana kadar devam et.
-```
+### 🏁 `/goal` (Kesintisiz Hedef Yürütme)
+- **Amaç:** Her adımda kullanıcı onayı beklemeden, belirlenen nihai hedefe ulaşana kadar bağımsız bir döngüde çalışır.
+- **Ne Zaman:** Gece sürecek test onarımları, toplu lint düzeltmeleri, kapsamlı migrasyonlar.
+- **Örnek:**
+  ```text
+  /goal 'npm test' çıktısındaki tüm hataları analiz et, düzelt ve test suite başarıyla geçene kadar devam et.
+  ```
 
----
+### 🧠 `/boost` (Derin Akıl Yürütme ve Doğrulama)
+- **Amaç:** Çok açılı analiz, stratejik planlama, karşıt argümanlar ve sıkı matematiksel/mantıksal doğrulama teknikleri kullanır.
+- **Ne Zaman:** Dağıtık sistem kilitlenmeleri (deadlock), karmaşık algoritmalar ve güvenlik açıkları analizi.
+- **Örnek:**
+  ```text
+  /boost Veritabanı bağlantı havuzundaki kilitlenme (deadlock) sorununu incele ve kanıtlanmış bir çözüm üret.
+  ```
 
-## 3. `/plan` (Aşamalı İş Planı)
+### 👥 `/teamwork` & `/swarm` (Çoklu Ajan İş Birliği)
+- **Amaç:** Ortak bir mesaj panosu üzerinde birden fazla uzman alt ajanın (Frontend, Backend, QA vb.) paralel iş bölümüyle çalışmasını sağlar.
+- **Ne Zaman:** Büyük ölçekli ve birden fazla yetkinlik gerektiren modüllerde.
+- **Örnek:**
+  ```text
+  /teamwork REST API uç noktaları, unit testler ve dokümantasyonu paralel olarak tamamlayalım.
+  ```
 
-### Ne İşe Yarar?
-Karmaşık bir görevi doğrulanabilir, mantıksal alt adımlara böler ve bir onay kontrol listesi sunar.
+### 🌐 `/browser` (Canlı Tarayıcı Otomasyonu)
+- **Amaç:** Canlı Chrome tarayıcısını Chrome DevTools üzerinden kontrol ederek form doldurma, buton tıklama ve sayfa doğrulama işlemlerini yapar.
+- **Ne Zaman:** E2E testleri, UI render kontrolleri, karmaşık web akışları.
+- **Örnek:**
+  ```text
+  /browser http://localhost:3000/register sayfasını aç, formu test verileriyle doldur ve sonucu doğrula.
+  ```
 
-### Ne Zaman Tercih Edilmelidir?
-- Birden çok servisi veya dosyayı etkileyen değişikliklerde,
-- Hangi sırayla işlem yapılacağını netleştirmek gerektiğinde.
+### ⏰ `/schedule` & `/automation` (Zamanlanmış Görevler)
+- **Amaç:** Arka planda cron formatında periyodik ya da belirli bir gecikmeyle tek seferlik çalışan ajan işleri tanımlar.
+- **Ne Zaman:** Günlük PR özetleri, haftalık bağımlılık denetimleri, sağlık kontrolleri.
+- **Örnek:**
+  ```text
+  /schedule 0 8 * * 1-5 Her sabah repodaki açık pull request'leri inceleyip özet çıkar.
+  ```
 
----
-
-## 4. `/boost` (Derin Düşünce ve İleri Düzey Doğrulama)
-
-### Ne İşe Yarar?
-Modelin çoklu bakış açısı, karşıt argümanlar ve sıkı matematiksel/mantıksal doğrulama teknikleri kullanarak karmaşık problemleri çözmesini sağlar.
-
-### Ne Zaman Tercih Edilmelidir?
-- Algoritmik problemler,
-- Eşzamanlılık (concurrency) ve kilitlenme (deadlock) analizi,
-- Yüksek güvenlik gerektiren kriptografik işlemler.
-
----
-
-## 5. `/teamwork` & `/swarm` (Çoklu Ajan İş Birliği)
-
-### Ne İşe Yarar?
-Ortak bir mesaj panosu üzerinde birden fazla uzman ajanın paralel iş bölümüyle çalışmasını organize eder.
-
-### Rol Dağılımı Örneği:
-- **Ajan 1 (Backend):** API uç noktalarını geliştirir.
-- **Ajan 2 (QA / Test):** Test senaryolarını yazar ve çalıştırır.
-- **Ajan 3 (Dokümantasyon):** README ve API dokümanlarını günceller.
-
----
-
-## 6. `/browser` (Tarayıcı Otomasyonu)
-
-### Ne İşe Yarar?
-Görsel Chrome DevTools alt ajanını ayağa kaldırır. Sayfa yükleme, buton tıklama, form doldurma ve DOM incelemesi yapabilir.
-
----
-
-## 7. `/schedule` & `/automation` (Zamanlanmış Otomasyon)
-
-### Ne İşe Yarar?
-Cron formatında veya tek seferlik zamanlayıcılarla otomatik tetiklenen arka plan ajanları tanımlar.
-
----
-
-## 8. `/compact` (Bağlam Optimizasyonu)
-
-### Ne İşe Yarar?
-Konuşma geçmişini kayıpsız özetleyerek gereksiz token yükünü temizler, ajanın hızını ve odaklanmasını artırır.
+### 🎓 `/learn` (Kalıcı Tercih Öğrenme)
+- **Amaç:** Kullanıcının verdiği bir düzeltmeyi veya proje kuralını gelecekteki oturumlarda hatırlamak üzere kalıcı hafızaya yazar.
+- **Örnek:**
+  ```text
+  /learn Bu repoda commit mesajları Conventional Commits standardında ve Türkçe yazılmalıdır.
+  ```
 
 ---
 
-## 9. `/learn` (Kalıcı Kural Öğrenme)
+## 2. Oturum, Model ve Bağlam Yönetimi
 
-### Ne İşe Yarar?
-Projenize veya kişisel çalışma tarzınıza özel standartları ajan hafızasına kalıcı olarak yazar.
+### 🗜 `/compact`
+- Konuşma bağlamını (context) özetler ve token sınırına takılmadan ajanın odaklanmasını sağlar.
+
+### 🧹 `/clear` veya `/reset`
+- Mevcut konuşma geçmişini tamamen sıfırlar ve taze bir oturum başlatır.
+
+### 🤖 `/model`
+- Kullanılan yapay zeka modelini (Gemini Flash, Gemini Pro vb.) görüntüler veya oturum için modeli değiştirir.
+
+### 📊 `/status`
+- Ajanın mevcut durumunu, çalışan arka plan işlerini ve bellek kullanımını listeler.
+
+### 💰 `/tokens` veya `/cost`
+- Oturum boyunca kullanılan giriş (prompt) ve çıkış (completion) token sayılarını ve yaklaşık maliyetini gösterir.
+
+### 🚪 `/exit` veya `/quit`
+- Antigravity CLI oturumundan güvenli bir şekilde çıkar.
+
+---
+
+## 3. Özelleştirme ve Araç Komutları
+
+### 🧩 `/plugin`
+- Kurulu eklentileri (plugins) listeler, etkinleştirir, devre dışı bırakır veya yeni eklenti oluşturur.
+
+### 🔌 `/mcp`
+- Model Context Protocol sunucularını, araçlarını ve kaynak bağlantılarını denetler.
+
+### 📜 `/rules`
+- Proje kökündeki `.agents/rules/` dizininden yüklenen güncel kuralları gösterir.
+
+### 🛠 `/skills`
+- Ajanın kullanabildiği uzmanlık becerilerini (SKILL.md) listeler.
+
+---
+
+## 4. Kod İnceleme ve Güvenlik Komutları
+
+### 🔍 `/review`
+- Ajanın çalışma alanında yaptığı dosya değişikliklerini git diff formatında inceler.
+
+### ↩️ `/undo`
+- Ajanın son yaptığı dosya değişikliklerini geri alır.
+
+### ❓ `/help`
+- Arayüzde kullanılabilen tüm komutların listesini ve açıklamalarını ekrana getirir.
