@@ -1,4 +1,4 @@
-# ==============================================================================
+﻿# ==============================================================================
 # antigravity-agent-workflow - Proje Başlatma Betiği (PowerShell)
 # Geliştirici: Kaaner4x
 # Lisans: MIT
@@ -13,6 +13,7 @@ $folders = @(
     ".agents/skills",
     ".agents/scratch",
     "docs",
+    "docs/is-akislari",
     "scripts"
 )
 

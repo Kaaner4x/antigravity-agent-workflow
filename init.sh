@@ -10,7 +10,7 @@ set -e
 echo ">>> Antigravity Agent Workflow Kurulumu Başlatılıyor..."
 
 # Dizin yapısını oluştur
-mkdir -p .agents/rules .agents/skills .agents/scratch docs scripts
+mkdir -p .agents/rules .agents/skills .agents/scratch docs docs/is-akislari scripts
 
 echo " [+] Gerekli dizinler doğrulandı (.agents, docs, scripts)"
 

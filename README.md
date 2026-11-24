@@ -161,6 +161,38 @@ chmod +x init.sh && ./init.sh
 
 ---
 
+## ⚙️ Kurumsal Özelleştirmeler ve Proje Yapısı
+
+```
+antigravity-agent-workflow/
+├── .agents/
+│   ├── rules/                 # Ajanın uyması gereken kurumsal kurallar (.md)
+│   │   ├── frontend.md        # Arayüz ve bileşen mimarisi kuralları
+│   │   ├── backend.md         # Katmanlı mimari ve API güvenliği
+│   │   ├── guvenlik.md        # Yetkilendirme ve sandbox uyumu
+│   │   ├── kod-inceleme.md    # Commit ve PR inceleme prensipleri
+│   │   ├── test-otomasyonu.md # Test kapsamı ve kalite güvencesi
+│   │   └── genel-kurallar.md  # Varsayılan dil ve çalışma standartları
+│   ├── skills/                # Adım adım özel yetenek tanımları (SKILL.md)
+│   └── scratch/               # Geçici hesaplama ve veri işleme betikleri
+├── docs/                      # Genişletilmiş Türkçe kullanım kılavuzları
+│   ├── is-akislari/           # Gerçek dünya kurumsal senaryoları
+│   │   ├── 01-pr-ve-kod-inceleme.md
+│   │   ├── 02-hata-ayiklama-ve-analiz.md
+│   │   ├── 03-gece-otonom-calisma-goal.md
+│   │   ├── 04-tarayici-e2e-test-browser.md
+│   │   └── 05-coklu-ajan-surusu-swarm.md
+│   ├── slash-komutlari.md     # Tüm komutların tek tek analizi
+│   ├── alt-ajanlar-ve-swarm.md
+│   └── kurallar-ve-beceriler.md
+├── init.ps1                   # Windows kurulum ve dizin hazırlama betiği
+├── init.sh                    # Linux/macOS kurulum betiği
+├── LICENSE                    # Orijinal İngilizce MIT Lisansı (Kaaner4x)
+└── README.md                  # Ana başvuru dokümanı
+```
+
+---
+
 ## 🛡 Güvenlik ve Terminal Sandbox Politikaları
 
 Antigravity, terminal komutlarını varsayılan olarak **Standard Sandbox Modunda** çalıştırır:
