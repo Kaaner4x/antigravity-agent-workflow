@@ -13,10 +13,10 @@
 2. [Quick Start (Installation)](#-quick-start-installation)
 3. [Complete Slash Commands Matrix](#-complete-slash-commands-matrix)
 4. [In-Depth Command Guide](#-in-depth-command-guide)
-   - [Advanced Agent & Workflow Commands](#1-advanced-agent--workflow-commands)
-   - [Session, Model & Context Management](#2-session-model--context-management)
-   - [Customization, Plugins & MCP Tools](#3-customization-plugins--mcp-tools)
-   - [Code Review, History & Help](#4-code-review-history--help)
+   - [Core Agent & Workflow Commands](#1-core-agent--workflow-commands)
+   - [Specialized Skills & Development Commands](#2-specialized-skills--development-commands)
+   - [Migration, Extensibility & Customization](#3-migration-extensibility--customization)
+   - [Session, Context & Diagnostics](#4-session-context--diagnostics)
 5. [Subagents Architecture](#-subagents-architecture)
 6. [Enterprise Rules & Project Structure](#-enterprise-rules--project-structure)
 7. [Security & Terminal Sandbox Policy](#-security--terminal-sandbox-policy)
@@ -29,7 +29,7 @@
 
 **Antigravity** is a next-generation AI development platform built on Google DeepMind infrastructure. It enables autonomous code authoring, multi-step debugging, live browser automation, terminal sandbox execution, and collaborative multi-agent swarms across the Antigravity IDE, CLI (`agy`), and Desktop surfaces.
 
-This repository serves as an enterprise-grade handbook and workflow starter kit, detailing **every slash command** (`/grill-me`, `/goal`, `/plan`, `/boost`, `/teamwork`, etc.), production rule sets (`.agents/rules/`), and real-world workflows.
+This repository serves as an enterprise-grade handbook and workflow starter kit, detailing **every slash command from the Antigravity command palette**, production rule sets (`.agents/rules/`), and real-world workflows.
 
 ---
 
@@ -51,111 +51,124 @@ chmod +x init.sh && ./init.sh
 
 ## 📊 Complete Slash Commands Matrix
 
-| Command | Category | Core Purpose |
-|---|---|---|
-| **`/grill-me`** | Planning / Architecture | Interviews the developer to resolve design decisions and edge cases before coding. |
-| **`/plan`** | Planning / Strategy | Breaks down complex requirements into sequential, verifiable checklists. |
-| **`/goal`** | Autonomous Execution | Runs continuously in a closed loop until the final objective is fully achieved. |
-| **`/boost`** | Deep Reasoning | Applies multi-perspective analysis, counter-arguments, and rigorous verification. |
-| **`/teamwork`** | Multi-Agent | Coordinates autonomous specialized subagents collaborating in parallel. |
-| **`/swarm`** | Multi-Agent | Manages an agent swarm communicating through a shared message board. |
-| **`/browser`** | Web Automation | Drives Chrome via DevTools to navigate, fill forms, and verify live UIs. |
-| **`/schedule`** | Automation | Schedules recurring cron jobs or one-time delayed background tasks. |
-| **`/automation`** | Automation | Interactive guide to design and configure scheduled agent workflows. |
-| **`/learn`** | Memory & Rules | Persists user corrections or project conventions into permanent memory. |
-| **`/compact`** | Context Optimization | Summarizes and frees conversation context window without losing state. |
-| **`/clear` / `/reset`** | Session Control | Resets conversation context to start a fresh, clean session. |
-| **`/model`** | Model Control | Displays or switches the active Gemini model (Flash, Pro, etc.). |
-| **`/status`** | Diagnostics | Displays current agent state, background tasks, and context size. |
-| **`/tokens` / `/cost`** | Metrics | Reports session token consumption and approximate cost metrics. |
-| **`/plugin`** | Plugin Management | Manages, creates, and installs plugins, skills, and MCP bundles. |
-| **`/mcp`** | Integrations | Inspects Model Context Protocol servers, resources, and tool connections. |
-| **`/rules`** | Rule Management | Displays active project and global rules loaded from `.agents/rules/`. |
-| **`/skills`** | Skill Management | Lists specialized procedural workflows loaded from `SKILL.md` definitions. |
-| **`/review`** | Code Inspection | Generates and reviews code diffs before applying or committing changes. |
-| **`/undo`** | Rollback | Safely reverts the most recent file edits made by the agent. |
-| **`/help`** | Help | Lists all supported slash commands, flags, and options. |
+The following matrix covers the full catalog of slash commands available in the Antigravity command palette:
+
+| Command | Palette Description | Category | Primary Purpose |
+|---|---|---|---|
+| **`/btw`** | *Ask a quick question without interrupting the main conversation.* | Conversational | Side inquiry without derailing the main task or polluting memory. |
+| **`/goal`** | *Run until the specified goal is completely finished.* | Autonomous Loop | Autonomous continuous execution loop without stopping for manual approval. |
+| **`/compact`** | *Compact the conversation now (summarize history to free up the context window).* | Context Control | Frees up context window while preserving essential milestones and state. |
+| **`/schedule`** | *Run an instruction on a recurring schedule or as a one-time timer.* | Scheduling / Cron | Registers cron expressions or one-shot delay timers for background agents. |
+| **`/browser`** | *Invoke a browser agent for web tasks.* | Browser DevTools | Interacts with live web applications, inspects DOM, clicks, and tests forms. |
+| **`/plan`** | *Plan carefully before executing a task.* | Strategy & Plan | Structures complex requirements into sequential, verifiable checklists. |
+| **`/grill-me`** | *Interview me to align on a plan.* | Architecture Interview | Conducts an in-depth interview to expose edge cases and architectural uncertainties. |
+| **`/teamwork`** | *Invoke a team of agents to autonomously tackle large projects.* | Multi-Agent Team | Spawns a coordinated team of autonomous agents for large-scale development. |
+| **`/learn`** | *Reflect on recent successes or corrections to capture reusable skills or rules.* | Rule Learning | Persists user preferences and learned heuristics into permanent agent rules. |
+| **`/boost`** | *Invoke the Boost multi-agent orchestrator for complex tasks.* | Deep Reasoning | Engages multi-agent perspective synthesis and mathematical verification. |
+| **`/swarm`** | *(Preview & Quota Heavy) Run a swarm: several agents working in parallel on one task.* | Swarm Coordination | Runs parallel agents collaborating across a shared real-time message board. |
+| **`/automation`** | *Interactive guide to design and create a scheduled background automation.* | Automation Wizard | Guided wizard for designing recurring background automation agents. |
+| **`/generative_ui`** | *How to render rich interactive HTML widgets inline in the chat or as standalone artifacts.* | Rich UI Rendering | Produces interactive HTML/JS widgets, diagrams, and live visual dashboards. |
+| **`/mcp-app-development`** | *Build, package, and debug MCP Apps for Antigravity.* | MCP Development | Guides developing MCP tools whose results render as interactive UI panes. |
+| **`/migrate-agent-settings`** | *Migrates the user's MCP servers, skills, slash commands, subagents, and instruction files.* | Migration | Imports configuration from Claude Code, Cursor, Codex, and Gemini CLI into Antigravity. |
+| **`/migrate-workflows`** | *Automatically migrate legacy workflows to modern skills across global and workspace configurations.* | Workflow Migration | Upgrades deprecated workflow formats into modern `SKILL.md` packages. |
+| **`/plugin`** | *How to manage and create plugins — namespaced bundles of skills, agents, rules, MCP servers and hooks.* | Plugin Ecosystem | Discovers, installs, creates, and manages modular Antigravity plugins. |
+| **`/run-workflow`** | *How to write and run a dynamic workflow script with the run_workflow tool.* | Scripted Workflows | Orchestrates dozens of agents via dynamic Python scripts (`agent`, `parallel`, `phase`). |
+| **`/agy-customizations`** | *Comprehensive guide and reference for the Antigravity Customization System.* | System Reference | Explains discovery roots, loading priorities, and hook integration mechanics. |
+| **`/antigravity-guide`** | *Provides a comprehensive guide, quick reference, and sitemap for Google Antigravity (AGY).* | Master Sitemap | Pointers to authoritative docs, CLI flags, IDE keybindings, and Python SDK. |
 
 ---
 
 ## 🔍 In-Depth Command Guide
 
-### 1. Advanced Agent & Workflow Commands
+### 1. Core Agent & Workflow Commands
 
-#### 🎯 `/grill-me` (Interactive Requirements Interview)
-- **Purpose:** Prevents hasty code generation by acting as a principal architect or product manager, asking targeted questions to resolve architectural uncertainties and edge cases.
-- **When to Use:** Before implementing new microservices, database schemas, or authentication flows.
+#### 💬 `/btw` (By The Way - Quick Side Question)
+- **Palette Description:** *Ask a quick question without interrupting the main conversation.*
+- **When to Use:** When the agent is mid-plan or executing a deep refactor, and you need to clarify a quick syntax, library, or concept question without polluting the execution context.
 - **Example:**
-  > `/grill-me We are designing a distributed real-time notification engine using WebSockets and Redis. Interview me on architecture and edge cases.`
+  > `/btw Does Node 20 natively support top-level await in CommonJS or only ESM?`
 
-#### 📋 `/plan` (Strategic Step-by-Step Blueprint)
-- **Purpose:** Deconstructs a complex mission into logical, sequential, and testable milestones.
-- **When to Use:** Multi-file refactoring, dependency upgrades, or cross-cutting features.
+#### 🏁 `/goal` (Continuous Objective Execution)
+- **Palette Description:** *Run until the specified goal is completely finished.*
+- **When to Use:** Overnight test suite repairs, massive migrations, and end-to-end lint fixes. The agent iterates autonomously until the completion criteria are met.
 - **Example:**
-  > `/plan Create a phased migration plan to transition our REST API to GraphQL with backwards compatibility.`
+  > `/goal Convert all files in src/ to TypeScript and iterate until 'npm test' passes with 0 errors.`
 
-#### 🏁 `/goal` (Unstoppable Objective Execution)
-- **Purpose:** Operates autonomously in a continuous execution loop without pausing for per-step approval until the mission is 100% complete.
-- **When to Use:** Overnight test suite repairs, massive legacy codebase migrations, or lint fixes.
+#### 🗜 `/compact` (Context Window Optimizer)
+- **Palette Description:** *Compact the conversation now (summarize history to free up the context window).*
+- **When to Use:** After 20-30 turns when response latency increases or context bounds approach limits.
 - **Example:**
-  > `/goal Convert all JavaScript files under src/ to TypeScript, resolve all type errors, and iterate until 'npm test' passes with 0 errors.`
+  > `/compact`
 
-#### 🧠 `/boost` (Deep Thinking & Multi-Perspective Verification)
-- **Purpose:** Engages advanced reasoning modes to dissect complex algorithmic, concurrency, and security bottlenecks.
-- **When to Use:** Deadlock resolution, memory leak investigations, cryptography implementations.
+#### ⏰ `/schedule` (Scheduled & Cron Automation)
+- **Palette Description:** *Run an instruction on a recurring schedule or as a one-time timer.*
+- **When to Use:** Daily PR triage, weekly dependency vulnerability audits, or recurring health probes.
 - **Example:**
-  > `/boost Analyze race conditions in our distributed transaction locking mechanism and devise a proven fix.`
-
-#### 👥 `/teamwork` & `/swarm` (Multi-Agent Swarm Orchestration)
-- **Purpose:** Fans out tasks across specialized subagents (Frontend, Backend, QA) working concurrently on a shared message board.
-- **When to Use:** Delivering end-to-end features where backend, frontend, and tests can be developed simultaneously.
-- **Example:**
-  > `/teamwork Concurrently develop the user avatar upload feature: Backend API, React crop UI, and integration test suite.`
+  > `/schedule 0 9 * * 1-5 Triage all open GitHub pull requests and post an executive summary.`
 
 #### 🌐 `/browser` (Live Chrome Automation)
-- **Purpose:** Launches a headless or visible Chrome instance via DevTools to test real user interactions, verify forms, and inspect visual UI states.
-- **When to Use:** End-to-end (E2E) testing, client-side visual validation, reproducing user-reported web bugs.
+- **Palette Description:** *Invoke a browser agent for web tasks.*
+- **When to Use:** Live web app interaction, end-to-end user journey tests, form entry, and visual validation.
 - **Example:**
-  > `/browser Navigate to http://localhost:3000/login, fill the form with test credentials, and verify dashboard redirection.`
+  > `/browser Open http://localhost:3000/login, fill test credentials, submit, and verify profile redirect.`
 
-#### ⏰ `/schedule` & `/automation` (Scheduled Background Tasks)
-- **Purpose:** Registers periodic cron jobs or one-time timers for scheduled agent execution.
-- **When to Use:** Daily pull request summaries, weekly security audit runs, periodic cache warm-ups.
+#### 📋 `/plan` (Strategic Task Blueprint)
+- **Palette Description:** *Plan carefully before executing a task.*
+- **When to Use:** Multi-component architectural refactoring or complex feature additions.
 - **Example:**
-  > `/schedule 0 9 * * 1-5 Inspect open pull requests and generate a status summary every weekday at 09:00.`
+  > `/plan Design a step-by-step phased migration from REST API to GraphQL.`
+
+#### 🎯 `/grill-me` (Interactive Requirements Interview)
+- **Palette Description:** *Interview me to align on a plan.*
+- **When to Use:** Unclear requirements, design trade-offs, or high-risk architectural shifts. The agent interviews you sequentially before writing any code.
+- **Example:**
+  > `/grill-me We are building a multi-tenant subscription billing engine. Grill me on architecture, edge cases, and concurrency.`
+
+#### 👥 `/teamwork` & `/swarm` (Multi-Agent Swarm)
+- **Palette Description:** *Invoke a team of agents to autonomously tackle large projects.*
+- **When to Use:** Large-scale features where backend API, frontend UI, and integration test suites can be parallelized across specialized subagents.
+- **Example:**
+  > `/teamwork Build the user avatar upload system concurrently: Backend API, React crop component, and Cypress test suite.`
 
 #### 🎓 `/learn` (Permanent Rule Learning)
-- **Purpose:** Persists a resolved error or custom coding preference into persistent rule memory for future sessions.
+- **Palette Description:** *Reflect on recent successes or corrections to capture reusable skills or rules.*
+- **When to Use:** After correcting agent behavior or standardizing a team convention.
 - **Example:**
-  > `/learn In this repository, always write commit messages following the Conventional Commits specification.`
+  > `/learn In this repository, always write commit messages in Conventional Commits format with emojis.`
+
+#### 🧠 `/boost` (Deep Thinking & Verification)
+- **Palette Description:** *Invoke the Boost multi-agent orchestrator for complex tasks.*
+- **When to Use:** Distributed deadlocks, race conditions, algorithmic optimization, and cryptography audits.
+- **Example:**
+  > `/boost Investigate the deadlock in our database connection pool under high concurrency and propose a provable fix.`
 
 ---
 
-### 2. Session, Model & Context Management
+### 2. Specialized Skills & Development Commands
 
-- **`/compact`:** Condenses conversational history into key state summaries, clearing context window overhead while preserving critical facts.
-- **`/clear` / `/reset`:** Wipes the active conversational context to initiate a pristine session.
-- **`/model`:** Inspects or hot-swaps the underlying model (e.g., Gemini Flash vs. Gemini Pro).
-- **`/status`:** Displays agent operational status, active background threads, and token load.
-- **`/tokens` / `/cost`:** Calculates prompt/completion token consumption and approximate session expenditure.
-- **`/exit` / `/quit`:** Safely exits the Antigravity CLI session.
+- **`/automation`:** Launches the interactive conversational guide to design and schedule background automations.
+- **`/generative_ui`:** Enables inline rendering of rich interactive HTML/CSS/JS widgets and dynamic visual controls.
+- **`/mcp-app-development`:** Full toolkit to build, test, and debug Model Context Protocol apps rendered in the auxiliary pane.
+- **`/run-workflow`:** Executes dynamic Python orchestration scripts that programmatically coordinate dozens of agents (`agent`, `parallel`, `pipeline`).
 
 ---
 
-### 3. Customization, Plugins & MCP Tools
+### 3. Migration, Extensibility & Customization
 
-- **`/plugin`:** Explores the Agent Marketplace, manages installed plugins, and scaffolds new customization packs.
-- **`/mcp`:** Inspects active Model Context Protocol servers (PostgreSQL, GitHub, Slack, Jira, Figma).
-- **`/rules`:** Lists all project-scoped rules loaded from `.agents/rules/`.
-- **`/skills`:** Lists active procedural skill definitions (`SKILL.md`).
+- **`/migrate-agent-settings`:** One-click migrator to transfer MCP servers, skills, and prompts from Claude Code, Cursor, Codex, or Gemini CLI into Antigravity.
+- **`/migrate-workflows`:** Automatically converts legacy workflow formats into modern `SKILL.md` definitions.
+- **`/plugin`:** Manages installed plugins and scaffolds new customization packs.
+- **`/agy-customizations` & `/antigravity-guide`:** Official offline knowledge base for discovery roots, loading priority, and CLI references.
 
 ---
 
-### 4. Code Review, History & Help
+### 4. Session, Context & Diagnostics
 
-- **`/review`:** Evaluates workspace file modifications in git diff format before execution.
-- **`/undo`:** Safely reverts the last atomic batch of file modifications.
-- **`/help`:** Displays the built-in manual and syntax reference for all available slash commands.
+- **`/model`:** View or change the active Gemini model.
+- **`/status`:** Check background processes, agent states, and token usage.
+- **`/review`:** Inspect proposed code diffs before applying changes.
+- **`/undo`:** Revert the most recent file edits.
+- **`/help`:** Display the official Antigravity command manual.
 
 ---
 
@@ -171,8 +184,6 @@ chmod +x init.sh && ./init.sh
 ---
 
 ## ⚙️ Enterprise Rules & Project Structure
-
-The repository is structured following enterprise best practices:
 
 ```
 antigravity-agent-workflow/
@@ -193,7 +204,7 @@ antigravity-agent-workflow/
 │   │   ├── 03-autonomous-goal-mode.md
 │   │   ├── 04-browser-e2e-testing.md
 │   │   └── 05-multi-agent-swarm.md
-│   ├── slash-commands.md      # Exhaustive slash commands reference
+│   ├── slash-commands.md      # Exhaustive slash commands reference (Turkish guide)
 │   ├── subagents-and-swarm.md # Subagents and multi-agent coordination
 │   └── rules-and-skills.md    # Guide to creating rules, skills, and MCP tools
 ├── init.ps1                   # Windows environment setup script
@@ -216,15 +227,16 @@ Antigravity executes terminal commands in **Standard Sandbox Mode** by default:
 ## 💡 Best Practices & Pro Tips
 
 1. **Leverage `@` Mentions:** Attach targeted files directly (`@src/auth.ts investigate this token expiry`).
-2. **Plan Before Executing:** For multi-file changes, always initiate with `/plan` or `/grill-me`.
-3. **Use `/goal` for Long Batches:** When running overnight test fixes, set a measurable completion metric.
-4. **Prevent Context Bloat:** Use `/compact` every 20-30 turns to keep the agent sharp and responsive.
+2. **Use `/btw` for Side Queries:** Don't derail your primary conversation; ask quick side questions with `/btw`.
+3. **Plan Before Executing:** For multi-file changes, always initiate with `/plan` or `/grill-me`.
+4. **Use `/goal` for Long Batches:** When running overnight test fixes, set a measurable completion metric.
+5. **Prevent Context Bloat:** Use `/compact` every 20-30 turns to keep the agent sharp and responsive.
 
 ---
 
 ## 📚 Documentation Index
 
-- [Complete Slash Commands Guide](docs/slash-commands.md)
+- [Complete Slash Commands Guide (Türkçe Detaylı Kılavuz)](docs/slash-commands.md)
 - [Subagents & Swarm Architecture](docs/subagents-and-swarm.md)
 - [Customizations: Rules, Skills & MCP](docs/rules-and-skills.md)
 - [Enterprise Workflows](docs/workflows/)

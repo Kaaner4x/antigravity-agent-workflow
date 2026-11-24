@@ -1,4 +1,4 @@
-﻿# ==============================================================================
+# ==============================================================================
 # antigravity-agent-workflow - Setup Script (PowerShell)
 # Developer: Kaaner4x
 # License: MIT
@@ -13,6 +13,7 @@ $folders = @(
     ".agents/skills",
     ".agents/scratch",
     "docs",
+    "docs/workflows",
     "docs/workflows",
     "scripts"
 )
